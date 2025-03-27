@@ -1,17 +1,17 @@
-import base64
+import base64  # This js required for Base64 encoding
 import codecs  # This is required for ROT13 encoding
 
-def encode_base64(text):
+def encode_base64(text):   # Base64 Encoder
     return base64.b64encode(text.encode('utf-8')).decode('utf-8')
 
-def encode_hex(text):
+def encode_hex(text):     # Hexadecimal Enckder
     return text.encode('utf-8').hex()
 
-def encode_rot13(text):
+def encode_rot13(text):   # ROT13 Encoder
     # Apply ROT13 directly on the string, not the bytes
     return codecs.encode(text, 'rot_13')
 
-def main():
+def main():   # Main Function
     print("Welcome to the Encoder Program!")
     print("Choose an encoder:")
     print("1. Base64")
