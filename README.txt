@@ -1,3 +1,8 @@
-DO NOT MAKE ANY PROFIT OFF THIS, SHARE IT AS YOUR CODE OR PROJECT.
+DO NOT SHARE COMMERCIALY, PUBLICALLY OR MAKE ANY PROFIT ON THIS FILE.
 
-Enter the Fork named FILES, and press Readme.txt
+How to setup:
+
+1. Open the "execute.txt" file.
+2. Set the "your path" to the path of the "Specode.py" File.
+3. Rename to "execute.bat"
+4. Open the bat file and use the program.
