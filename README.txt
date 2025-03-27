@@ -1,3 +1,3 @@
 DO NOT MAKE ANY PROFIT OFF THIS, SHARE IT AS YOUR CODE OR PROJECT.
 
-Enter the Folder, and press Readme.txt
+Enter the Fork named FILES, and press Readme.txt
