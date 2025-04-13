@@ -1,4 +1,4 @@
-mport base64
+import base64
 import codecs
 
 # Updated Morse Code Dictionary with Punctuation
@@ -16,23 +16,18 @@ MORSE_CODE_DICT = {
 
 REVERSE_MORSE_DICT = {value: key for key, value in MORSE_CODE_DICT.items()}
 
-
 # Encoding Functions
 def encode_base64(text):
     return base64.b64encode(text.encode('utf-8')).decode('utf-8')
 
-
 def encode_hex(text):
     return text.encode('utf-8').hex()
-
 
 def encode_rot13(text):
     return codecs.encode(text, 'rot_13')
 
-
 def encode_xor(text, key):
     return ''.join(chr(ord(char) ^ key) for char in text)
-
 
 def encode_caesar(text, shift):
     result = []
@@ -44,12 +39,15 @@ def encode_caesar(text, shift):
             result.append(char)
     return ''.join(result)
 
-
 def encode_morse(text):
     text = text.upper()
-    encoded_text = ' '.join(MORSE_CODE_DICT.get(char, '?') for char in text)
-    return encoded_text
+    return ' '.join(MORSE_CODE_DICT.get(char, '?') for char in text)
 
+def encode_binary(text):
+    return ' '.join(format(ord(char), '08b') for char in text)
+
+def encode_reverse(text):
+    return text[::-1]
 
 # Decoding Functions
 def decode_base64(encoded_text):
@@ -58,21 +56,17 @@ def decode_base64(encoded_text):
     except Exception:
         return "Invalid Base64 string!"
 
-
 def decode_hex(encoded_text):
     try:
         return bytes.fromhex(encoded_text).decode('utf-8')
     except Exception:
         return "Invalid hexadecimal string!"
 
-
 def decode_rot13(text):
     return codecs.encode(text, 'rot_13')
 
-
 def decode_xor(text, key):
     return ''.join(chr(ord(char) ^ key) for char in text)
-
 
 def decode_caesar(text, shift):
     result = []
@@ -84,16 +78,23 @@ def decode_caesar(text, shift):
             result.append(char)
     return ''.join(result)
 
-
 def decode_morse(morse_code):
     decoded_text = ''.join(REVERSE_MORSE_DICT.get(code, '?') for code in morse_code.split(' '))
     return decoded_text.replace('/', ' ')
 
+def decode_binary(binary_text):
+    try:
+        return ''.join(chr(int(char, 2)) for char in binary_text.split())
+    except ValueError:
+        return "Invalid binary string!"
+
+def decode_reverse(text):
+    return text[::-1]
 
 # Main Loop
 def main():
     while True:
-        print("\nWelcome to the Encoder/Decoder Program!")
+        print("\nWelcome to the Specode Program!")
         print("What would you like to do?")
         print("1. Encode")
         print("2. Decode")
@@ -121,6 +122,8 @@ def main():
             print("4. XOR")
             print("5. Caesar Cipher")
             print("6. Morse Code")
+            print("7. Binary")
+            print("8. Reverse Text")
 
             encoder_choice = input("Enter the number of the encoder: ")
             text = input("What would you like to encode? ")
@@ -139,6 +142,10 @@ def main():
                 encoded_text = encode_caesar(text, shift)
             elif encoder_choice == '6':
                 encoded_text = encode_morse(text)
+            elif encoder_choice == '7':
+                encoded_text = encode_binary(text)
+            elif encoder_choice == '8':
+                encoded_text = encode_reverse(text)
             else:
                 print("Invalid encoder choice.")
                 continue
@@ -153,6 +160,8 @@ def main():
             print("4. XOR")
             print("5. Caesar Cipher")
             print("6. Morse Code")
+            print("7. Binary")
+            print("8. Reverse Text")
 
             decoder_choice = input("Enter the number of the decoder: ")
             text = input("What would you like to decode? ")
@@ -171,12 +180,15 @@ def main():
                 decoded_text = decode_caesar(text, shift)
             elif decoder_choice == '6':
                 decoded_text = decode_morse(text)
+            elif decoder_choice == '7':
+                decoded_text = decode_binary(text)
+            elif decoder_choice == '8':
+                decoded_text = decode_reverse(text)
             else:
                 print("Invalid decoder choice.")
                 continue
 
             print(f"\nHere is the decoded version: {decoded_text}")
-
 
 if __name__ == "__main__":
     main()
